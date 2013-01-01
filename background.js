@@ -2,13 +2,14 @@
 
 var loggedin = false;
 
-loginHandler();
+console.log('started');
+//loginHandler();
 
 chrome.browserAction.onClicked.addListener(function(tab){
     if(loggedin){
-	logoutHandler();
+	checkConnection(logoutHandler);
     } else {
-	loginHandler();
+	checkConnection(loginHandler);
     }
 } );
 

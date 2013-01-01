@@ -29,14 +29,15 @@ function logout(){
     });
 }
 
-function checkConnection(){
+function checkConnection(callback){
     var xmlHttp = new XMLHttpRequest();
     xmlHttp.open("GET", theUrl, true);
 
     xmlHttp.onreadystatechange=function(){
-	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
-	    clearTimeout(xmlHttpTimeout); 
-	    return true;
+	if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
+	    clearTimeout(xmlHttpTimeout);
+	    console.log("reached true");
+	    callback();
    	}
     }
 
@@ -47,6 +48,6 @@ function checkConnection(){
    	alert("Hi !!, this is cyberoam autologin extension\nand I'm really sorry to say that I can't find cyberoam :(");
    	// if cyberoam is unreachable then there is no point in checking for it again & again.
    	//clearInterval(timer);
-	return false;
+	console.log("reached false");
     }
 }
