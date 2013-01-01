@@ -37,6 +37,7 @@ function checkConnection(callback){
 	if (xmlHttp.readyState === 4 && xmlHttp.status === 200) {
 	    clearTimeout(xmlHttpTimeout);
 	    console.log("reached true");
+	    chrome.browserAction.setBadgeText({text:""});
 	    callback();
    	}
     }
@@ -49,5 +50,6 @@ function checkConnection(callback){
    	// if cyberoam is unreachable then there is no point in checking for it again & again.
    	//clearInterval(timer);
 	console.log("reached false");
+	chrome.browserAction.setBadgeText({text:"!"});
     }
 }
