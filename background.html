@@ -1,0 +1,33 @@
+<html>
+<head>
+<script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+// this js file will be loaded when the browser starts
+var theUrl = "http://10.100.56.55:8090/httpclient.html";
+
+chrome.browserAction.onClicked.addListener(function(tab){
+    alert("hello");
+} );
+
+function checkConnection(){
+    var xmlHttp = new XMLHttpRequest();
+    xmlHttp.open("GET", theUrl, true);
+
+    xmlHttp.onreadystatechange=function(){
+	if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
+	    clearTimeout(xmlHttpTimeout); 
+	    login();
+   	}
+    }
+
+    xmlHttp.send("");
+    var xmlHttpTimeout=setTimeout(ajaxTimeout,2000);	// 2 seconds Timeout
+    function ajaxTimeout(){
+	xmlHttp.abort();
+   	alert("Hi !!, this is cyberoam autologin extension\nand I'm really sorry to say that I can't find cyberoam :(");
+   	// if cyberoam is unreachable then there is no point in checking for it again & again.
+   	clearInterval(timer);
+    }
+}</script>
+</head>
+</html>
