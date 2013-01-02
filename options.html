@@ -4,6 +4,7 @@
     <title>Cyberoam Autologin Options Page</title>
     <link href="style.css" rel="stylesheet" type="text/css" />
     <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="jstepper.min.js"></script>
 </head>
 <body>
     <div class="form_div" >
@@ -12,10 +13,18 @@
 	<input type="text" id="user"/><br>
 	<label class="form_labels">Password :   </label>
 	<input type="password" id="pass"/><br>
-	<input type="button" id="button" value=" Save Credentials "/>
+	    
+	<p class="ins_text">Relogin Interval Preference</p>
+	<input type="radio" name="choice" value="opt1" id="opt1">
+	    <input type="text" id="interval" style="width:50px" disabled/>
+	    <label class="form_labels" style="margin-left:10px" for="opt1">Specify custom time interval (in mins, minimum value 30)</label>
+	</input><br>
+	<input type="radio" name="choice" value="opt2" id="opt2" checked >
+	    <label class="form_labels" style="margin-left:20px" for="opt2">take time interval from cyberoam webpage</label>
+	</input><p />
+	<input type="button" id="button" style="margin-top:20px" value=" Save " />
 	<img src="check.png" id="check" style="display:inline"/>
-	<!--<div id="check" style="float:left"><img src="check.png" /></div>-->
-    
+	
 	<script src="options.js" ></script>
     
 	<p class="ins_text" style="margin-top:80px">Instructions</p>
