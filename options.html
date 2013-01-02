@@ -2,13 +2,31 @@
 <html>
 <head>
     <title>Cyberoam Autologin Options Page</title>
+    <link href="style.css" rel="stylesheet" type="text/css" />
+    <script type="text/javascript" src="jquery-1.8.3.min.js"></script>
 </head>
 <body>
-	Username : <input type="text" id="user"/><br>
-	Password : <input type="password" id="pass"/><br>
-	<button class="submit">Save Credentials</button>
+    <div class="form_div" >
+	<p class="ins_text">Daiict Login Details</p>
+	<label class="form_labels">Username : </label>
+	<input type="text" id="user"/><br>
+	<label class="form_labels">Password :   </label>
+	<input type="password" id="pass"/><br>
+	<input type="button" id="button" value=" Save Credentials "/>
+	<img src="check.png" id="check" style="display:inline"/>
+	<!--<div id="check" style="float:left"><img src="check.png" /></div>-->
     
-    <script src="options.js"></script>
+	<script src="options.js" ></script>
+    
+	<p class="ins_text" style="margin-top:80px">Instructions</p>
+	<ul type="square">
+	    <li class="help_text">The icon on the top right of ur browser</li>
+	    <li class="help_text">Bla bla bla</li>
+	    <li class="help_text">Bla bla bla</li>
+	    <li class="help_text">Bla bla bla</li>
+	    <li class="help_text">Bla bla bla</li>
+	</ul>
+    </div>
     
 </body>
 </html>
