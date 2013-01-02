@@ -14,5 +14,6 @@
     "default_icon":"icon_grey.png",
     "default_title":"Cyberoam"
     },
-"permissions": ["http://*/*","https://*/*","tabs","notifications","contextMenus","webNavigation","webRequest","webRequestBlocking","storage"]
+"permissions": ["http://*/*","https://*/*","tabs","notifications","contextMenus","webNavigation","webRequest","webRequestBlocking","storage"],
+"update_url":"https://raw.github.com/jaydeep17/Cyberoam--chromeExtension/master/updates/updates.xml"
 }
