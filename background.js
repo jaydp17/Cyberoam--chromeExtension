@@ -3,9 +3,11 @@
 var loggedin = false;
 //var theUrl = "http://10.100.56.55:8090/httpclient.html";
 var theUrl = "http://localhost/cyb.php";
-
+var storage = chrome.storage.local;
 
 checkConnection(login);
+
+//xsetInterval(function(){},//time);
 chrome.browserAction.onClicked.addListener(function(tab){
     if(loggedin){
 	checkConnection(logout);
@@ -19,7 +21,7 @@ function login(){
     storage.get(null,function(data){
 	if(!data.user || !data.pass){
 	    console.log("Login : crendentials not defined");
-	    alert("Error: login credentials not defined");
+	    chrome.tabs.create({url:"options.html"});	// opens the options page coz the credentials are not defined
 	    return;
 	}
 	$.post(theUrl, { mode:"191", username:data.user,password:data.pass }, function(response){
