@@ -5,10 +5,15 @@ var allowAuto = true;
 var liveTime = 60;	// this is in minutes
 var liveTimeFrmServer = true;
 
-//var theUrl = "http://10.100.56.55:8090/httpclient.html";
+var theUrl = "http://10.100.56.55:8090/httpclient.html";
 //var theUrl = "http://localhost/cyb.php";
-var theUrl = "http://localhost/cyb_ankit.html";
+//var theUrl = "http://localhost/cyb_ankit.html";
 var storage = chrome.storage.local;
+
+var loginSuccess = "You have successfully logged in";
+var passIncorrect = "The system could not log you on. Make sure your password is correct"
+var maxlogin = "You have reached Maximum Login Limit.";
+var logOffmsg = "You have successfully logged off";
 
 checkConnection(login);
 
@@ -32,12 +37,21 @@ function login(){
 	    return;
 	}
 	$.post(theUrl, { mode:"191", username:data.user,password:data.pass }, function(response){
-	    console.log("Login response :" + response);
-	    loggedin = true;
-	    chrome.browserAction.setIcon({path:"icon.png"});
-	    setTimeout(function(){
-		checkConnection(login);
-	    },liveTime*60*1000);	// Set the time here 
+	    var message = $(response).find('message').text();
+	    console.log("Login response :" + message);
+	    if(message == loginSuccess){
+		loggedin = true;
+		chrome.browserAction.setIcon({path:"icon.png"});
+		setTimeout(function(){
+		    checkConnection(login);
+		},liveTime*60*1000);	// Set the time here 
+	    } else if(message == maxlogin){
+		loggedin = false;
+		alert("Cyberoam: " + message);
+	    } else if(message == passIncorrect){
+		loggedin = false;
+		alert("Cyberoam: " + message);
+	    }
 	});
     });
 }
@@ -51,9 +65,14 @@ function logout(){
 	    return;
 	}
 	$.post(theUrl, { mode:"193", username:data.user }, function(response){
-	    console.log("Logout response :" + response);
-	    loggedin = false;
-	    chrome.browserAction.setIcon({path:"icon_grey.png"});
+	    var message = $(response).find('message').text();
+	    if(message == logOffmsg){
+		console.log("Logout response :" + message);
+		loggedin = false;
+		chrome.browserAction.setIcon({path:"icon_grey.png"});
+	    } else {
+		alert("Cyberoam: " + message);
+	    }
 	});
     });
 }
